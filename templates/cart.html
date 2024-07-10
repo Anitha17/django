@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <table class="table">
+                    <tr>
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Product Total Price</th>
+                    </tr>
+                    {% for i in cart_items%}
+                    <tr>
+                        <td><img src="{{i.item.image.url}}" width="100px" height="100px" alt=""></td>
+                        <td class="fw-bold">{{i.item.name}}</td>
+                        <td>Rs.{{i.product_item.dcost}}</td>
+                        <td>{{i.quantity}}</td>
+                        <td>Rs.{{i.product_tem.dcost|mul:i.quantity}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col-4">
+                <div class="card p-3">
+                    <h3>Total Amount</h3>
+                    <hr>
+                    <h1>Rs.{{total_amt}}</h1>
+                    <a href="{% url 'checkout' %}?total_amt={{total_amt}}"><button class="btn btn-dark btn-lg mt-5">Checkout</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
